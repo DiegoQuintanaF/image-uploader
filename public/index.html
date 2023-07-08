@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="./assets/icons/devchallenges.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Page for upload images." />
+    <title>Image Uploader</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Noto+Sans:wght@500;700&family=Poppins:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+  <body>
+    <main class="main">
+      <section class="main__section">
+        <form class="form">
+          <header class="header">
+            <h1 class="header__tittle">Upload your image</h1>
+            <p class="header__paragraph">File should be Jpeg, Png,...</p>
+          </header>
+          <label class="main__form-drop-zone" for="img-file">
+            <input
+              class="main__form-input-file"
+              type="file"
+              name="img-file"
+              id="img-file"
+              accept="image/png, image/jpeg, image/jpg"
+              hidden
+            />
+            <span id="drop-text">Drag & Drop your image here</span>
+          </label>
+          <div class="main__form-label">
+            <p>Or</p>
+
+            <button id="choose-btn" type="button" class="main__form-choose-btn">
+              Choose a file
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__text">
+        created by
+        <a
+          class="footer__text-anchor"
+          href="https://github.com/DiegoQuintanaF"
+          target="_blank"
+          rel="Link to my profile of GitHub"
+        >
+          DiegoQuintanaF
+        </a>
+        - devChallenges.io
+      </p>
+    </footer>
+    <script type="module" src="./scripts/index.js"></script>
+  </body>
+</html>
