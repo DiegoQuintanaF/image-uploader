@@ -15,6 +15,14 @@
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
   <body>
+    <aside class="pop-up-confirm unactive">
+      <img src="./assets/icons/image.svg" alt="Img preview" />
+      <div class="pop-up-btns">
+        <button class="submit-btn btn">Submit</button>
+        <button class="cancel-btn btn">Cancel</button>
+      </div>
+    </aside>
+    <div class="darkness unactive"></div>
     <main class="main">
       <section class="main__section">
         <form class="form">
@@ -36,7 +44,11 @@
           <div class="main__form-label">
             <p>Or</p>
 
-            <button id="choose-btn" type="button" class="main__form-choose-btn">
+            <button
+              id="choose-btn"
+              type="button"
+              class="main__form-choose-btn btn"
+            >
               Choose a file
             </button>
           </div>
