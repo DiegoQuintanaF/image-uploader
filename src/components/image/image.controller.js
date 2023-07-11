@@ -9,8 +9,8 @@ const imageUpload = async (req, res) => {
   const image = req.files['img-file'];
 
   const fileName = image.name;
-
-  const fileExt = image.name.split('.').at(-1);
+  const aux = fileName.split('.');
+  const fileExt = aux[aux.length - 1];
   const newName = `file-${Math.random().toString(32).substring(7)}.${fileExt}`;
   const imgPath = `./uploads/${newName}`;
 
