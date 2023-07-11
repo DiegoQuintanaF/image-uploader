@@ -27,9 +27,7 @@ popUpSubmit.addEventListener('click', async () => {
   uploadingView();
   const res = await uploadImage();
   if (res.response === 'ok') {
-    setTimeout(() => {
-      successView();
-    }, 4000);
+    successView(res.imageId);
   }
 });
 
@@ -110,7 +108,9 @@ function uploadingView() {
   main_section.append(divContainer);
 }
 
-function successView() {
+function successView(imageId) {
+  const imageURL = `${window.location.href}api/v1/image/search/${imageId}`;
+
   const main_section = main.querySelector('section');
   main_section.classList.add('success-upload');
   main_section.classList.remove('uploading-img');
@@ -134,8 +134,7 @@ function successView() {
 
   const link = document.createElement('span');
   link.classList.add('link-success');
-  link.innerText =
-    'https://www.holaholaholaholaholaholaholaholaholaholaholaholaholaholaholaholaholaholaholaholaholahola.com';
+  link.innerText = imageURL.substring(0, 52) + '...';
 
   const copyButton = document.createElement('button');
   copyButton.classList.add('copy-btn');
@@ -145,6 +144,11 @@ function successView() {
   linkContainer.append(link, copyButton);
 
   main_section.append(successHeader, imagePreview, linkContainer);
+
+  copyButton.addEventListener('click', async () => {
+    await navigator.clipboard.writeText(imageURL);
+    copyButton.textContent = 'Link copied!';
+  });
 }
 
 // utils
@@ -202,7 +206,6 @@ function removeAlert() {
 async function uploadImage() {
   const formData = new FormData();
 
-  // console.log(formData.has('img-file'));
   formData.append('img-file', image);
 
   try {
@@ -211,9 +214,11 @@ async function uploadImage() {
       body: formData,
     });
 
-    const data = await res.json();
-    return data;
+    return await res.json();
   } catch (error) {
-    showAlert('Problem to connect');
+    showAlert("We're experiencing connection problems, please try again.");
+    setTimeout(() => {
+      location.reload();
+    }, 4000);
   }
 }
