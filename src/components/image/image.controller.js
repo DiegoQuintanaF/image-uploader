@@ -22,8 +22,8 @@ const imageUpload = async (req, res) => {
 
   try {
     const imageId = await model.save(fileName, imgPath);
-
     await fs.unlink(imgPath);
+
     res.json({ error: '', response: 'ok', imageId });
   } catch {
     res.status(500).json({ response: 'Ups!' });
