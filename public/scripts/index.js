@@ -11,6 +11,7 @@ const popUpCancel = popUp.querySelector('.cancel-btn');
 const darkness = document.querySelector('.darkness');
 
 let image;
+let localUrl;
 
 //  Pop Up Confirmation
 
@@ -21,8 +22,15 @@ darkness.addEventListener('click', () => {
   }
 });
 
-popUpSubmit.addEventListener('click', () => {
+popUpSubmit.addEventListener('click', async () => {
+  popUpSubmit.disabled = true;
   uploadingView();
+  const res = await uploadImage();
+  if (res.response === 'ok') {
+    setTimeout(() => {
+      successView();
+    }, 4000);
+  }
 });
 
 popUpCancel.addEventListener('click', () => {
@@ -77,15 +85,11 @@ inputFile.addEventListener('change', (e) => {
 
 function uploadingView() {
   handlePopUpConfirm();
+
   const main_section = main.querySelector('section');
-  main_section.querySelector('.form').remove();
   main_section.classList.add('uploading-img');
 
-  // <h2>Uploading...</h2>
-
-  // <div class="loader">
-  //   <div class="loaderBar"></div>
-  // </div>
+  main_section.querySelector('.form').remove();
 
   const divContainer = document.createElement('div');
   divContainer.classList.add('uploading-container');
@@ -104,7 +108,43 @@ function uploadingView() {
   divContainer.append(headerH2, divLoader);
 
   main_section.append(divContainer);
-  console.log('hola');
+}
+
+function successView() {
+  const main_section = main.querySelector('section');
+  main_section.classList.add('success-upload');
+  main_section.classList.remove('uploading-img');
+  main_section.querySelector('.uploading-container').remove();
+
+  const successHeader = document.createElement('header');
+  successHeader.classList.add('header-success');
+
+  const spanCheck = document.createElement('span');
+  const headerH1 = document.createElement('h1');
+  headerH1.innerText = 'Upload successfully!';
+
+  successHeader.append(spanCheck, headerH1);
+
+  const imagePreview = document.createElement('img');
+  imagePreview.classList.add('img-success');
+  imagePreview.src = localUrl;
+
+  const linkContainer = document.createElement('div');
+  linkContainer.classList.add('link-success-container');
+
+  const link = document.createElement('span');
+  link.classList.add('link-success');
+  link.innerText =
+    'https://www.holaholaholaholaholaholaholaholaholaholaholaholaholaholaholaholaholaholaholaholaholahola.com';
+
+  const copyButton = document.createElement('button');
+  copyButton.classList.add('copy-btn');
+  copyButton.classList.add('btn');
+  copyButton.textContent = 'Copy Link';
+
+  linkContainer.append(link, copyButton);
+
+  main_section.append(successHeader, imagePreview, linkContainer);
 }
 
 // utilis
@@ -123,7 +163,7 @@ function showPreviewImage(image) {
   const imageReader = new FileReader();
 
   imageReader.addEventListener('load', () => {
-    const localUrl = imageReader.result;
+    localUrl = imageReader.result;
     popUpImage.src = localUrl;
   });
 
@@ -156,5 +196,24 @@ function removeAlert() {
 
   if (alert) {
     alert.remove();
+  }
+}
+
+async function uploadImage() {
+  const formData = new FormData();
+
+  // console.log(formData.has('img-file'));
+  formData.append('img-file', image);
+
+  try {
+    const res = await fetch('/api/v1/image/submit', {
+      method: 'POST',
+      body: formData,
+    });
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    showAlert('Problem to connect');
   }
 }
