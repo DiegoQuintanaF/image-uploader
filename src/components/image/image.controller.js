@@ -1,4 +1,5 @@
 import model from './image.model.js';
+import fs from 'fs-extra';
 
 const imageUpload = async (req, res) => {
   if (!req.files) {
@@ -19,8 +20,14 @@ const imageUpload = async (req, res) => {
     }
   });
 
-  const imageId = await model.save(fileName, imgPath);
-  res.json({ error: '', response: 'ok', imageId });
+  try {
+    const imageId = await model.save(fileName, imgPath);
+
+    await fs.unlink(imgPath);
+    res.json({ error: '', response: 'ok', imageId });
+  } catch {
+    res.status(500).json({ response: 'Ups!' });
+  }
 };
 
 const getImage = async (req, res) => {
