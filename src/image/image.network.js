@@ -1,9 +1,11 @@
-import express from 'express';
+import { Router } from 'express';
+import controller from './image.controller.js';
+import fileMiddleware from '../middlewares/fileMiddleware.js';
 
-const imageRouter = express.Router();
+const imageRouter = Router();
 
-imageRouter.get('/', (req, res) => {
-  res.send('Hi images!');
-});
+imageRouter.get('/search/:id', controller.getImage);
+
+imageRouter.post('/submit', fileMiddleware, controller.imageUpload);
 
 export default imageRouter;
