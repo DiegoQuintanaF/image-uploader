@@ -147,7 +147,7 @@ function successView() {
   main_section.append(successHeader, imagePreview, linkContainer);
 }
 
-// utilis
+// utils
 
 function haldleStatus(property) {
   property.classList.toggle('unactive');
