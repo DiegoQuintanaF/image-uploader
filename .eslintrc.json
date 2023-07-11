@@ -17,6 +17,9 @@
   },
   "globals": {
     "document": "readonly",
-    "window": "readonly"
+    "window": "readonly",
+    "FileReader": "readonly",
+    "location": "readonly",
+    "navigator": "readonly"
   }
 }
