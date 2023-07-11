@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import controller from './image.controller.js';
-import fileMiddleware from '../middlewares/fileMiddleware.js';
+import fileMiddleware from './../../middlewares/fileMiddleware.js';
 
 const imageRouter = Router();
 

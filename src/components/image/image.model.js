@@ -1,6 +1,6 @@
 import { MongoClient, ObjectId } from 'mongodb';
-import { DB_URI } from './../config.js';
-import { uploadImageCloudinary } from '../utils/cloudinary.js';
+import { DB_URI } from './../../config.js';
+import { uploadImageCloudinary } from './../../utils/cloudinary.js';
 
 const saveImage = async (fileName, imgPath) => {
   const client = new MongoClient(DB_URI);

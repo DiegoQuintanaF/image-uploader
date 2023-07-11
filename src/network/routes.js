@@ -1,5 +1,5 @@
 import express from 'express';
-import imageRouter from '../image/image.network.js';
+import imageRouter from './../components/image/image.network.js';
 
 const routerAPI = (app) => {
   const router = express.Router();
