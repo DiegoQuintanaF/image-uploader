@@ -18,8 +18,8 @@
   "globals": {
     "document": "readonly",
     "window": "readonly",
-    "FileReader": "readonly",
     "location": "readonly",
+    "FileReader": "readonly",
     "navigator": "readonly"
   }
 }
