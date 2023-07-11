@@ -10,5 +10,5 @@ app.use(express.urlencoded({ extended: false }));
 routerAPI(app);
 
 app.listen(PORT, () => {
-  console.log(`Servidor iniciado en: http://localhost:${PORT}`);
+  console.log(`Server started on port: ${PORT}`);
 });
