@@ -1,9 +1,10 @@
+import response from './../../network/response.js';
 import model from './image.model.js';
 import fs from 'fs/promises';
 
 const imageUpload = async (req, res) => {
   if (!req.files) {
-    res.json({ error: 'no hay imagenes', response: '' });
+    response.error(req, res, 'No image was sent.', 400);
   }
 
   const image = req.files['img-file'];
@@ -16,7 +17,7 @@ const imageUpload = async (req, res) => {
 
   image.mv(imgPath, function (err) {
     if (err) {
-      return res.status(500).send(err);
+      response.error(req, res, 'No image was sent.', 400);
     }
   });
 
@@ -24,9 +25,14 @@ const imageUpload = async (req, res) => {
     const imageId = await model.save(fileName, imgPath);
     await fs.unlink(imgPath);
 
-    res.json({ error: '', response: 'ok', imageId });
+    const body = {
+      message: 'Image uploaded successfully.',
+      imageId,
+    };
+
+    response.success(req, res, body, 201);
   } catch {
-    res.status(500).json({ response: 'Ups!' });
+    response.error(req, res);
   }
 };
 
@@ -36,7 +42,7 @@ const getImage = async (req, res) => {
   const url = await model.get(id);
 
   if (!url) {
-    res.send('Bad request');
+    response.success(req, res, 'Bad request.', 400);
   }
 
   res.redirect(url);
