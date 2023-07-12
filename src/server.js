@@ -9,6 +9,4 @@ app.use(express.urlencoded({ extended: false }));
 
 routerAPI(app);
 
-app.listen(PORT, () => {
-  console.log(`Server started on port: ${PORT}`);
-});
+app.listen(PORT);
