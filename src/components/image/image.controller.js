@@ -1,5 +1,5 @@
 import model from './image.model.js';
-import fs from 'fs-extra';
+import fs from 'fs/promises';
 
 const imageUpload = async (req, res) => {
   if (!req.files) {
@@ -42,9 +42,7 @@ const getImage = async (req, res) => {
   res.redirect(url);
 };
 
-const controller = {
+export default {
   imageUpload,
   getImage,
 };
-
-export default controller;
