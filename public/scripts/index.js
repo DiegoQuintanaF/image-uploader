@@ -216,7 +216,7 @@ async function uploadImage() {
   formData.append('img-file', image);
 
   try {
-    const res = await fetch('/api/v1/image/submit_prueba/', {
+    const res = await fetch('/api/v1/image/submit/', {
       method: 'POST',
       body: formData,
     });
