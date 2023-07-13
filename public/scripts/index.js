@@ -24,10 +24,17 @@ darkness.addEventListener('click', () => {
 
 popUpSubmit.addEventListener('click', async () => {
   popUpSubmit.disabled = true;
+
   uploadingView();
+  const limitTime = failRequest();
+
   const res = await uploadImage();
-  if (res.response === 'ok') {
-    successView(res.imageId);
+
+  if (res.body !== '') {
+    clearTimeout(limitTime);
+    successView(res.body.imageId);
+  } else {
+    failRequest(res.error);
   }
 });
 
@@ -209,16 +216,26 @@ async function uploadImage() {
   formData.append('img-file', image);
 
   try {
-    const res = await fetch('/api/v1/image/submit', {
+    const res = await fetch('/api/v1/image/submit_prueba/', {
       method: 'POST',
       body: formData,
     });
 
     return await res.json();
-  } catch (error) {
+  } catch {
     showAlert("We're experiencing connection problems, please try again.");
     setTimeout(() => {
       location.reload();
-    }, 4000);
+    }, 5000);
   }
+}
+
+function failRequest(message, time) {
+  setTimeout(() => {
+    showAlert(message ?? 'Timeout exceeded.');
+  }, 10000);
+
+  return setTimeout(() => {
+    location.reload();
+  }, time ?? 14000);
 }
