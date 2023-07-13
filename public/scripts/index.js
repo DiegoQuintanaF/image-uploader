@@ -26,12 +26,13 @@ popUpSubmit.addEventListener('click', async () => {
   popUpSubmit.disabled = true;
 
   uploadingView();
-  const limitTime = failRequest();
+  const [alert, reload] = failRequest();
 
   const res = await uploadImage();
 
   if (res.body !== '') {
-    clearTimeout(limitTime);
+    clearTimeout(alert);
+    clearTimeout(reload);
     successView(res.body.imageId);
   } else {
     failRequest(res.error);
@@ -231,11 +232,13 @@ async function uploadImage() {
 }
 
 function failRequest(message, time) {
-  setTimeout(() => {
+  const alert = setTimeout(() => {
     showAlert(message ?? 'Timeout exceeded.');
-  }, 10000);
+  }, 15000);
 
-  return setTimeout(() => {
+  const reload = setTimeout(() => {
     location.reload();
-  }, time ?? 14000);
+  }, time ?? 18000);
+
+  return [alert, reload];
 }
