@@ -39,6 +39,7 @@
 ![screenshot](https://res.cloudinary.com/drvoywub5/image/upload/v1689292332/image_uploader/pwmucpgwvxa3htcrijpe.gif)
 
 If you want to upload an image you can do it here: [Image Uploader.](https://upload-images-here.onrender.com/)
+Don't despair if it doesn't load the first time, as it is deployed on a free service, they turn it off when there is inactivity.
 
 ### Built With
 
