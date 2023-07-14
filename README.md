@@ -31,27 +31,23 @@
 - [Features](#features)
 - [How to use](#how-to-use)
 - [Contact](#contact)
-- [Acknowledgements](#acknowledgements)
 
 <!-- OVERVIEW -->
 
 ## Overview
 
-![screenshot](https://user-images.githubusercontent.com/16707738/92399059-5716eb00-f132-11ea-8b14-bcacdc8ec97b.png)
+![screenshot](https://res.cloudinary.com/drvoywub5/image/upload/v1689292332/image_uploader/pwmucpgwvxa3htcrijpe.gif)
 
-Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
-
-- Where can I see your demo?
-- What was your experience?
-- What have you learned/improved?
-- Your wisdom? :)
+If you want to upload an image you can do it here: [Image Uploader.](https://upload-images-here.onrender.com/)
 
 ### Built With
 
 <!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
 
-- [NodeJS](https://nodejs.org/en)
+- [Cloudinary](https://cloudinary.com/)
+- [MongoDB](https://www.mongodb.com/)
 - [Express](https://expressjs.com/)
+- [NodeJS](https://nodejs.org/en)
 - [HTML5](https://dev.w3.org/html5/spec-LC/)
 - [CSS3](https://www.w3.org/Style/CSS/Overview.en.html)
 
@@ -65,12 +61,18 @@ This application/site was created as a submission to a [DevChallenges](https://d
 
 <!-- Example: -->
 
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) and [MongoDB](https://www.mongodb.com/) installed on your computer, plus you must have a [Cloudinary](https://cloudinary.com/) account. From your command line:
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/your-user-name/your-project-name
+$ git clone https://github.com/DiegoQuintanaF/image-uploader
 
+$ cd image-uploader
+```
+
+Once cloned, create the `.env` file with the structure of `.env.example`, but with your database and the data from your Cloudinary account. From your command line:
+
+```bash
 # Install dependencies
 $ npm install
 
@@ -78,16 +80,7 @@ $ npm install
 $ npm start
 ```
 
-## Acknowledgements
-
-<!-- This section should list any articles or add-ons/plugins that helps you to complete the project. This is optional but it will help you in the future. For example -->
-
-- [Steps to replicate a design with only HTML and CSS](https://devchallenges-blogs.web.app/how-to-replicate-design/)
-- [Node.js](https://nodejs.org/)
-- [Marked - a markdown parser](https://github.com/chjj/marked)
-
 ## Contact
 
-- Website [your-website.com](https://{your-web-site-link})
-- GitHub [@your-username](https://{github.com/your-usermame})
-- Twitter [@your-twitter](https://{twitter.com/your-username})
+- GitHub [@DiegoQuintanaF](https://github.com/DiegoQuintanaF/)
+- Email [diegoquinfa@gmail.com]()
