@@ -1,23 +1,23 @@
 @font-face {
   font-family: "Poppins";
-  src: url("./fonts/Poppins-Medium.woff");
+  src: url("./fonts/Poppins-Medium.woff2");
   font-weight: 500;
 }
 
 @font-face {
   font-family: "Noto Sans";
-  src: url("./fonts/NotoSans-Medium.woff");
+  src: url("./fonts/NotoSans-Medium.woff2");
 }
 
 @font-face {
   font-family: "Montserrat";
-  src: url("./fonts/Montserrat-Medium.woff");
+  src: url("./fonts/Montserrat-Medium.woff2");
   font-weight: normal;
 }
 
 @font-face {
   font-family: "Montserrat";
-  src: url("./fonts/Montserrat-Bold.woff");
+  src: url("./fonts/Montserrat-Bold.woff2");
   font-weight: 700;
 }
 
